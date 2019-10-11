@@ -57,7 +57,7 @@ For example, this allows a⁸, can be represented as ((a²)²)².
 
 If you calculate a⁸ naively:
 
-a⁸ = _a_ ∙ _a_ ∙ _a_ ∙ _a_ ∙ _a_ ∙ _a_ ∙ _a_ ∙ _a_
+`a⁸ = a ∙ a ∙ a ∙ a ∙ a ∙ a ∙ a ∙ a`
 
 ...7 multiplications are required (the exponent - 1).
 
