@@ -49,7 +49,11 @@ _e_ = 2<sup>k</sup>
 
 We can compute _c_ using the "squares" method - this allows for fast computation of large positive integer powers of a number.
 
-For example, a⁸, can be represented as ((a²)²)².
+From rules of indices:
+
+(b<sup>e</sup>)<sup>f</sup> = b<sup>ef</sup>
+
+For example, this allows a⁸, can be represented as ((a²)²)².
 
 If you calculate a⁸ naively:
 
