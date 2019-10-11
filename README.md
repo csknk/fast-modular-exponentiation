@@ -80,3 +80,37 @@ def exponent_power_of_2(a, e_power2, mod):
         a = (a * a) % mod
     return a
 ```
+
+Exponent is Not Necessarily a Power of Two
+------------------------------------------
+The previous algorithm gets us on the right track, but it has a major limitation - it only works if the exponent is a power of two.
+
+We can however take the principle and generalise it so that it works for any number.
+
+The idea is to take any number represented as powers of two - which as luck would have it, is exactly the way that modern computers represent numbers - and to create a running total of the required squares.
+
+Example:
+
+a<sup>11</sup> = a<sup>8</sup> ∙ a<sup>2</sup> ∙ a<sup>1<sup>
+
+...Notice that 8, 2 and one are powers of 2 (3, 1 and 0 respectively).
+
+We can get the answer by working through each power of two up to the maximum possible given the size of e, only adding the squares if the given power of two is a factor in the exponent. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
