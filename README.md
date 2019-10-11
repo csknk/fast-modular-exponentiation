@@ -39,3 +39,40 @@ Start with 1, multiply by _b_, take the result mod(_m_), repeat _e_ times.
 In other words:
 1. Start with _c_ ← 1
 2. Repeat _e_ times: _c_ ← _c_ ∙ _b_ mod _m_
+
+
+Exponent is a Power of Two
+--------------------------
+If _c_ ← _b_<sup>e</sup> (mod _m_) and 
+
+_e_ = 2<sup>k</sup>
+
+We can compute _c_ using the "squares" method - this allows for fast computation of large positive integer powers of a number.
+
+For example, a⁸, can be represented as ((a²)²)².
+
+If you calculate a⁸ naively:
+
+a⁸ = _a_ ∙ _a_ ∙ _a_ ∙ _a_ ∙ _a_ ∙ _a_ ∙ _a_ ∙ _a_
+
+...7 multiplications are required (the exponent - 1).
+
+Alternatively, computing `a⁸` as `((a²)²)²` requires three multiplications:
+
+a ∙ a = s₁
+s₁ ∙ s₁ = s₂, where s₂ is equivalent to (a²)²
+s₂ ∙ s₂ = s₃, where s₃ is equivalent to ((a²)²)²
+
+In this way, `aⁿ` requires no more than 2 log₂(_e_) multiplications, where _e_ is the exponent.
+
+So long as our exponent is a power of 2, and we multiply congruences at each stage, we have an efficient algorithm that can be converted to code:
+
+### Example Code: Exponent is a Power of 2
+```python
+#!/usr/bin/env python3
+
+def exponent_power_of_2(a, e_power2, mod):
+    for i in range (0, e_power2):
+        a = (a * a) % mod
+    return a
+```
