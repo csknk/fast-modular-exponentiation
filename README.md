@@ -25,7 +25,7 @@ For multiplication (mod _m_) congruence is maintained. In other words:
 
 if a ≡ x (mod m) then a ∙ k ≡ x (mod m) 
 
-It follows that if we're just concerned with congruences (i.e. the residue mod m), multiplying the congruencesprovides the same result as multiplying the factors and then taking the result modulo m:
+It follows that if we're just concerned with congruences (i.e. the residue mod m), multiplying the congruences provides the same result as multiplying the factors and then taking the result modulo m:
 
 If a ∙ b ≡ x (mod m), then a (mod m) ∙ a (mod m) ≡ x (mod m)
 
@@ -87,7 +87,7 @@ The previous algorithm gets us on the right track, but it has a major limitation
 
 We can however take the principle and generalise it so that it works for any number.
 
-The idea is to take any number represented as powers of two - which as luck would have it, is exactly the way that modern computers represent numbers - and to create a running total of the required squares.
+The idea is to take any number represented as the summation of powers of two - which as luck would have it, is exactly the way that modern computers represent numbers - and to create a running total of the required squares.
 
 Example:
 
@@ -95,22 +95,37 @@ a<sup>11</sup> = a<sup>8</sup> ∙ a<sup>2</sup> ∙ a<sup>1<sup>
 
 ...Notice that 8, 2 and one are powers of 2 (3, 1 and 0 respectively).
 
-We can get the answer by working through each power of two up to the maximum possible given the size of e, only adding the squares if the given power of two is a factor in the exponent. 
+We can get the answer by working through each power of two up to the maximum possible given the size of e, squaring the base at each stage and only adding the squares to the result if the given power of two is a factor in the exponent. 
 
+### Algorithm
+Given a base `b`, an exponent `e` and modulo `m`, compute b<sup>e</sup> (mod m):
 
+1. Create an integer (or long) variable called `result` and set this result equal to 1.
+2. Check the least significant bit (2⁰) of the exponent e. If it is 1, set `result` equal to `base`.
+2. Check each bit in the exponent by iteratively bitshifting and masking against 1 - this checks each position in order, starting from the second-least-significant bit (we have already considered the least most significant bit in stage 2.
+3. Start a loop
+4. At each iteration, set `base` equal to the value of the previous `base` squared, modulo `m`
+5. At each stage, if the LSB of `e` is set, set `result` equal to the product of the previous `result` and the current `base` (which is the previous base squared, as described in stage 3), all modulo `m`
+6. When the value of `e` is NULL, end the loop
+7. The value of result is the product of all b to the power of two for all powers of two that constitute the exponent. 
 
+In summary, set the result to be 1. Starting from the least significant bit of the exponent, iteratively check each bit - which denotes that the particular power of two is a component of the exponent. Square the base modulo m at each stage. If the exponent bit is set, multiply the base with the current result, modulo m. The final result is the base raised to the exponent mod m - the product of a set of base raised to exponents that constitute the original exponent broken into powers of two.  
 
+### Example: C
+```c
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+int fastExp(int b, int e, int m)
+{
+	int result = 1;
+	if (1 & e)
+		result = b;
+	while (1) {
+		if (!e) break;
+		e >>= 1;
+		b = (b * b) % m;
+		if (e & 1)
+			result = (result * b) % m;
+	}
+	return result;
+}
+```
