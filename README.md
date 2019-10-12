@@ -129,3 +129,13 @@ int fastExp(int b, int e, int m)
 	return result;
 }
 ```
+
+References
+----------
+* [Modular Arithmetic, Khan Academy][1], with practice quizzes
+* [Intro to modular exponentiation][2], You Tube, Mark's Education Tutorials
+* [Modular Exponentiation Made Easy][3], Randall Heyman YouTube
+
+[1]: https://www.khanacademy.org/computing/computer-science/cryptography#modarithmetic
+[2]: https://www.youtube.com/watch?v=DtV4Fwvn0e8
+[3]: https://www.youtube.com/watch?v=tTuWmcikE0Q

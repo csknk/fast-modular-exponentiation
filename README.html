@@ -45,8 +45,43 @@
 <h2 id="exponent-is-not-necessarily-a-power-of-two">Exponent is Not Necessarily a Power of Two</h2>
 <p>The previous algorithm gets us on the right track, but it has a major limitation - it only works if the exponent is a power of two.</p>
 <p>We can however take the principle and generalise it so that it works for any number.</p>
-<p>The idea is to take any number represented as powers of two - which as luck would have it, is exactly the way that modern computers represent numbers - and to create a running total of the required squares.</p>
+<p>The idea is to take any number represented as the summation of powers of two - which as luck would have it, is exactly the way that modern computers represent numbers - and to create a running total of the required squares.</p>
 <p>Example:</p>
 <p>a<sup>11</sup> = a<sup>8</sup> ∙ a<sup>2</sup> ∙ a<sup>1<sup></p>
 <p>...Notice that 8, 2 and one are powers of 2 (3, 1 and 0 respectively).</p>
-<p>We can get the answer by working through each power of two up to the maximum possible given the size of e, only adding the squares if the given power of two is a factor in the exponent.</p>
+<p>We can get the answer by working through each power of two up to the maximum possible given the size of e, squaring the base at each stage and only adding the squares to the result if the given power of two is a factor in the exponent.</p>
+<h3 id="algorithm">Algorithm</h3>
+<p>Given a base <code>b</code>, an exponent <code>e</code> and modulo <code>m</code>, compute b<sup>e</sup> (mod m):</p>
+<ol style="list-style-type: decimal">
+<li>Create an integer (or long) variable called <code>result</code> and set this result equal to 1.</li>
+<li>Check the least significant bit (2⁰) of the exponent e. If it is 1, set <code>result</code> equal to <code>base</code>.</li>
+<li>Check each bit in the exponent by iteratively bitshifting and masking against 1 - this checks each position in order, starting from the second-least-significant bit (we have already considered the least most significant bit in stage 2.</li>
+<li>Start a loop</li>
+<li>At each iteration, set <code>base</code> equal to the value of the previous <code>base</code> squared, modulo <code>m</code></li>
+<li>At each stage, if the LSB of <code>e</code> is set, set <code>result</code> equal to the product of the previous <code>result</code> and the current <code>base</code> (which is the previous base squared, as described in stage 3), all modulo <code>m</code></li>
+<li>When the value of <code>e</code> is NULL, end the loop</li>
+<li>The value of result is the product of all b to the power of two for all powers of two that constitute the exponent.</li>
+</ol>
+<p>In summary, set the result to be 1. Starting from the least significant bit of the exponent, iteratively check each bit - which denotes that the particular power of two is a component of the exponent. Square the base modulo m at each stage. If the exponent bit is set, multiply the base with the current result, modulo m. The final result is the base raised to the exponent mod m - the product of a set of base raised to exponents that constitute the original exponent broken into powers of two.</p>
+<h3 id="example-c">Example: C</h3>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">
+<span class="dt">int</span> fastExp(<span class="dt">int</span> b, <span class="dt">int</span> e, <span class="dt">int</span> m)
+{
+    <span class="dt">int</span> result = <span class="dv">1</span>;
+    <span class="kw">if</span> (<span class="dv">1</span> &amp; e)
+        result = b;
+    <span class="kw">while</span> (<span class="dv">1</span>) {
+        <span class="kw">if</span> (!e) <span class="kw">break</span>;
+        e &gt;&gt;= <span class="dv">1</span>;
+        b = (b * b) % m;
+        <span class="kw">if</span> (e &amp; <span class="dv">1</span>)
+            result = (result * b) % m;
+    }
+    <span class="kw">return</span> result;
+}</code></pre></div>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.khanacademy.org/computing/computer-science/cryptography#modarithmetic">Modular Arithmetic, Khan Academy</a>, with practice quizzes</li>
+<li><a href="https://www.youtube.com/watch?v=DtV4Fwvn0e8">Intro to modular exponentiation</a>, You Tube, Mark's Education Tutorials</li>
+<li><a href="https://www.youtube.com/watch?v=tTuWmcikE0Q">Modular Exponentiation Made Easy</a>, Randall Heyman YouTube</li>
+</ul>
