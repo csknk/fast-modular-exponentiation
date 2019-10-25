@@ -17,7 +17,7 @@ Naive Exponentiation
 THe most basic approach would be to multiply _b_ by itself _e_ - 1 times, and performing floor division on the result to obtain the result modulo _m_ (which will be the remainder or residue of floor division of the result by the modulus). There are a few problems with this approach:
 
 1. If _b_ and _e_ are large numbers, _b_<sup>e</sup> will be enormous - which causes problems representing the resultant data as a native type in many languages/systems.
-2. If _b_ and _e_ are large, a lot of multiplications are required
+2. If _b_ and _e_ are large, a lot of multiplications are required. The universe might not last long enough for us to carry out the computation…
 
 Slightly Less Naive Approach
 ----------------------------
