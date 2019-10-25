@@ -102,7 +102,7 @@ Given a base `b`, an exponent `e` and modulo `m`, compute b<sup>e</sup> (mod m):
 
 1. Create an integer (or long) variable called `result` and set this result equal to 1.
 2. Check the least significant bit (2⁰) of the exponent e. If it is 1, set `result` equal to `base`.
-2. Check each bit in the exponent by iteratively bitshifting and masking against 1 - this checks each position in order, starting from the second-least-significant bit (we have already considered the least most significant bit in stage 2.
+2. Check each bit in the exponent by iteratively bitshifting and masking against 1 - this checks each position in order, starting from the second-least-significant bit (we have already considered the least significant bit in stage 2.
 3. Start a loop
 4. At each iteration, set `base` equal to the value of the previous `base` squared, modulo `m`
 5. At each stage, if the LSB of `e` is set, set `result` equal to the product of the previous `result` and the current `base` (which is the previous base squared, as described in stage 3), all modulo `m`
