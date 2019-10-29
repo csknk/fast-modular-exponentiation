@@ -130,6 +130,14 @@ int fastExp(int b, int e, int m)
 }
 ```
 
+Code Examples
+-------------
+This repo contains working code for fast modular exponentiation in:
+
+* [C][4]
+* [C++][5]
+* [Python][6]
+
 References
 ----------
 * [Modular Arithmetic, Khan Academy][1], with practice quizzes
@@ -139,3 +147,6 @@ References
 [1]: https://www.khanacademy.org/computing/computer-science/cryptography#modarithmetic
 [2]: https://www.youtube.com/watch?v=DtV4Fwvn0e8
 [3]: https://www.youtube.com/watch?v=tTuWmcikE0Q
+[4]: /c
+[5]: /cpp
+[6]: /python
