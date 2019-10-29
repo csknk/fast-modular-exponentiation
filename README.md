@@ -27,7 +27,7 @@ if a ≡ x (mod m) then a ∙ k ≡ x (mod m)
 
 It follows that if we're just concerned with congruences (i.e. the residue mod m), multiplying the congruences provides the same result as multiplying the factors and then taking the result modulo m:
 
-If a ∙ b ≡ x (mod m), then a (mod m) ∙ a (mod m) ≡ x (mod m)
+If a ∙ a ≡ x (mod m), then a (mod m) ∙ a (mod m) ≡ x (mod m)
 
 In terms of an exponentiation algorithm, multiplying the result modulo _m_ at each step leads to much smaller numbers which spares computational resources.
 
@@ -63,9 +63,9 @@ If you calculate a⁸ naively:
 
 Alternatively, computing `a⁸` as `((a²)²)²` requires three multiplications:
 
-a ∙ a = s₁
-s₁ ∙ s₁ = s₂, where s₂ is equivalent to (a²)²
-s₂ ∙ s₂ = s₃, where s₃ is equivalent to ((a²)²)²
+* a ∙ a = s₁
+* s₁ ∙ s₁ = s₂, where s₂ is equivalent to (a²)²
+* s₂ ∙ s₂ = s₃, where s₃ is equivalent to ((a²)²)²
 
 In this way, `aⁿ` requires no more than 2 log₂(_e_) multiplications, where _e_ is the exponent.
 
