@@ -24,6 +24,5 @@ int main()
 	int r = fastExp(b, e, m);
 	std::cout << b << " to the power " << e << " ≡ " << r << " (modulo " << m << ")\n";
 
-
 	return 0;
 }

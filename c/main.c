@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "integer-input.h"
 
-
 int fastExp(int b, int e, int m)
 {
 	int result = 1;
