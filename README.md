@@ -111,6 +111,18 @@ Given a base `b`, an exponent `e` and modulo `m`, compute b<sup>e</sup> (mod m):
 
 In summary, set the result to be 1. Starting from the least significant bit of the exponent, iteratively check each bit - which denotes that the particular power of two is a component of the exponent. Square the base modulo m at each stage. If the exponent bit is set, multiply the base with the current result, modulo m. The final result is the base raised to the exponent mod m - the product of a set of base raised to exponents that constitute the original exponent broken into powers of two.  
 
+### Recursive Alternative: Algorithm 2
+Fast modular exponentiation can be carried out recursively based on the fact that:
+* a<sup>e</sup> = a<sup>e/2</sup> x a<sup>e/2</sup> (when e is even) and
+* a<sup>e</sup> = a<sup>e - 1</sup> * a (when e is not even)
+
+The recursive method breaks the exponentiation down into simpler and simpler computations:
+
+1. Define function modExp(base, exponent, modulus)
+2. Set base case - if exponent = 1, return 1
+3. If the exponent is even, return square(func(base, exponent / 2, mod)) % mod
+4. If the exponent is not even, return (base % mod) * func(base, exponent - 1, mod)
+
 ### Example: C
 ```c
 
@@ -130,6 +142,16 @@ int fastExp(int b, int e, int m)
 }
 ```
 
+### Recursive Example: Python
+```py
+def mod_exp2(base, exp, mod):
+    if exp == 0: return 1
+    if exp & 1 == 0:
+        r = mod_exp(base, exp / 2, mod)
+        return (r * r) % mod
+    else: return (base % mod * mod_exp(base, exp - 1, mod)) % mod
+```
+
 Code Examples
 -------------
 This repo contains working code for fast modular exponentiation in:
@@ -144,6 +166,7 @@ References
 * [Intro to modular exponentiation][2], You Tube, Mark's Education Tutorials
 * [Modular Exponentiation Made Easy][3], Randall Heyman YouTube
 * [Good description, with a recursive example in C][7]
+* [Video describing the recursive algorithm][8]
 
 [1]: https://www.khanacademy.org/computing/computer-science/cryptography#modarithmetic
 [2]: https://www.youtube.com/watch?v=DtV4Fwvn0e8
@@ -152,3 +175,4 @@ References
 [5]: /cpp
 [6]: /python
 [7]: https://www.cs.ucf.edu/~dmarino/progcontests/modules/matexpo/RecursionFastExp.pdf
+[8]: https://www.youtube.com/watch?v=C7gHx2StFi8
