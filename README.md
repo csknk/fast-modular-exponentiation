@@ -143,6 +143,7 @@ References
 * [Modular Arithmetic, Khan Academy][1], with practice quizzes
 * [Intro to modular exponentiation][2], You Tube, Mark's Education Tutorials
 * [Modular Exponentiation Made Easy][3], Randall Heyman YouTube
+* [Good description, with a recursive example in C][7]
 
 [1]: https://www.khanacademy.org/computing/computer-science/cryptography#modarithmetic
 [2]: https://www.youtube.com/watch?v=DtV4Fwvn0e8
@@ -150,3 +151,4 @@ References
 [4]: /c
 [5]: /cpp
 [6]: /python
+[7]: https://www.cs.ucf.edu/~dmarino/progcontests/modules/matexpo/RecursionFastExp.pdf
